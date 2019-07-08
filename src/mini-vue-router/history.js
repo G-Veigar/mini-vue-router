@@ -1,23 +1,49 @@
-export class History {
+export default class History {
+  constructor (router) {
+    this.router = router
+    // 当前路由
+    this.current = {
+      fullPath: '/',
+      hash: '',
+      matched: [],
+      meta: {},
+      name: null,
+      params: {},
+      path: '/',
+      query: {}
+    }
+  }
   // 设置监听，当hash改变，路由跳转，渲染组件
   setupListeners (cf) {
+    console.log('setupListeners', this)
     window.addEventListener('hashchange', e => {
+      console.log('hashchange', this)
       this.transitionTo(getHash())
     })
   }
 
-  transitionTo (location) {
+  transitionTo (location, onComplete) {
     // 根据当前的location对象，获得匹配的路由对象
     const route = this.router.match(location)
+    // console.log('history_transitionTo_route', route)
     this.updateRoute(route)
+    // 执行导航完成的回调
+    onComplete && onComplete()
   }
   // 设置updateCb 也就是触发最后更新视图的操作
   listen (updateCb) {
+    // console.log('listen')
     this.updateCb = updateCb
   }
   // 调用updateCb更新视图
   updateRoute (route) {
+    // console.log('updateRoute', route)
+    this.current = route
     this.updateCb(route)
+  }
+
+  getCurrentLocation () {
+    return getHash()
   }
 }
 
