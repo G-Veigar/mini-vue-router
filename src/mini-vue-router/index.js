@@ -19,7 +19,7 @@ export default class VueRouter {
 
     // 设置updateCb函数 _route是响应式属性，更新_route会刷新视图
     history.listen(route => {
-      console.log('history.listen 调用, 设置_route', route, app)
+      // console.log('history.listen 调用, 设置_route', route, app)
       app._route = route
     })
 

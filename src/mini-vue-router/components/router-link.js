@@ -6,12 +6,12 @@
 export default {
   name: 'RouterLink',
   functional: true,
-  render (createElement, { parent }) {
-    // console.log('RouterView_parent_$route ', parent.$route)
+  render (createElement, { props, slots }) {
+    let href = '/#' + props.to
     return createElement('a', {
       attrs: {
-        href: '/#/about'
+        href
       }
-    }, 'about')
+    }, slots().default)
   }
 }
