@@ -29,7 +29,12 @@ export function install (Vue, options) {
     }
   })
 
-  // 在原型上面挂载当前路由实例对象 $route
+  // 在原型上面挂载 路由实例对象 $router
+  Object.defineProperty(Vue.prototype, '$router', {
+    get () { return this._routerRoot._router }
+  })
+
+  // 在原型上面挂载 当前路由对象 $route
   Object.defineProperty(Vue.prototype, '$route', {
     get () { return this._routerRoot._route }
   })

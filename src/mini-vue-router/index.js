@@ -37,6 +37,11 @@ export default class VueRouter {
     return this.matcher(location)
   }
 
+  // 路由跳转方法
+  push (location) {
+    this.history.push(location)
+  }
+
   afterEach () {}
 }
 

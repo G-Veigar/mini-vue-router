@@ -45,6 +45,12 @@ export default class History {
   getCurrentLocation () {
     return getHash()
   }
+
+  push (location) {
+    this.transitionTo(location, () => {
+      pushHash(location)
+    })
+  }
 }
 
 /**
@@ -69,4 +75,8 @@ function getHash () {
   }
 
   return href
+}
+// 更新页面导航栏的hash
+function pushHash (path) {
+  window.location.hash = path
 }

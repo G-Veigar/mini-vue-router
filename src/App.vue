@@ -12,6 +12,9 @@ export default {
   mounted () {
     console.log(this.$router)
     window.appVue = this
+    setTimeout(() => {
+      this.$router.push('/about')
+    }, 2000)
   }
 }
 </script>
