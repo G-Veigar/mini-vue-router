@@ -9,7 +9,6 @@ export default class VueRouter {
     this.matcher = createMatcher(options.routes, this)
   }
   /** 初始化 init
-   * 1. 监听hashChange事件
    *
    *
   */
@@ -29,6 +28,7 @@ export default class VueRouter {
     const setupHashListener = () => {
       history.setupListeners()
     }
+
     history.transitionTo(history.getCurrentLocation(), setupHashListener)
   }
 
